@@ -1,0 +1,14 @@
+# примеры API-запросов
+
+@port = 3000
+@baseUrl = http://localhost:{{port}}
+
+# получение новостей
+GET {{baseUrl}}/news?count=5
+
+###
+
+# получение одной новости
+GET {{baseUrl}}/news
+
+###

@@ -32,15 +32,26 @@ function generateNewsList(count) {
   return newsList;
 }
 
+const newsList = generateNewsList(5);
+
+// Таймер для генерации новых новостей
+setInterval(() => {
+  const newNews = generateNewsList(1)[0]; 
+  if (newsList.length >= 5) {
+    newsList.shift(); // Удаляем первое (самое старое) сообщение, если массив полон
+  }
+  newsList.push(newNews);
+}, 5000);
+
 app.get('/news', (req, res) => {
-  const count = req.query.count || 1;
+  // const count = req.query.count || 1;
 
   // Эмуляция задержки
   setTimeout(() => {
     const response = {
       status: 'ok',
       timestamp: Math.floor(Date.now() / 1000), // Текущее время в секундах
-      newsList: generateNewsList(count),
+      newsList,
     };
 
     res.json(response);
